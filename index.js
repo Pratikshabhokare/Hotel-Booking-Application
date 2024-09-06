@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const User = require('./modules/user');
+const Hotel=require('./modules/hotel');
  
 
 mongoose.connect('mongodb://localhost:27017/Hotel-database').then(()=>console.log('mongodb connected!'))
