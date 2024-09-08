@@ -1,18 +1,19 @@
 const express=require('express');
 const router=express.Router();
-const Hotel=require('../modules/hotel');
+const Hotel=require('../modules/hotel.js');
 
 
-router.post('/saveHotel',async (req,res)=>{
-    const newhotel=new Hotel(req.body);
+router.post('/',async (req,res)=>{
+   try {
+    const newHotel = new Hotel(req.body);
 
-    try {
-        const savedHotel=await newhotel.save();
-        res.status(201).json(savedHotel);
-    } catch (error) {
-        res.status(404).json({message: error.message});
-    }
-})
+    const saveHotel =   await newHotel.save();
+    return res.json(saveHotel);  
+   } catch (error) {
+    console.error(error);
+    res.status(400).json(error.message);
+   }    
+});
 
 module.exports = router;
 
